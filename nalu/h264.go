@@ -40,7 +40,7 @@ func (info *FuInfoH264) EncodeFuInfo() []byte {
 	return pData
 }
 
-func EncodeFuInfo(Start, End, NRI, FuType int) []byte {
+func EncodeFuInfoH264(Start, End, NRI, FuType int) []byte {
 	var F, R = 0, 0
 	IType := Type_FU_A
 	pData := make([]byte, 2)
@@ -49,7 +49,7 @@ func EncodeFuInfo(Start, End, NRI, FuType int) []byte {
 	return pData
 }
 
-func DecodeFuInfo(data []int) FuInfoH264 {
+func DecodeFuInfoH265(data []int) FuInfoH264 {
 	return FuInfoH264{
 		F:      data[0] >> 7 & 0x1,
 		NRI:    data[0] >> 5 & 0x3,
