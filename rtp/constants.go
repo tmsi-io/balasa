@@ -1,0 +1,49 @@
+package rtp
+
+const C_bit1 = 1
+const C_bit2 = 3
+const C_bit3 = 7
+const C_bit4 = 15
+const C_bit5 = 31
+const C_bit6 = 63
+const C_bit7 = 127
+const C_bit8 = 255
+const Default_MTU = 1400
+const RTPPacketLen = 12           // RTP header package lan
+const FuHeaderLenH264 = 2         // H264Fu header len
+const FuHeaderLenH265 = 3         // H265Fu header len
+const DefaultRTPVer = 2           // RTP version, default to 2
+const PayloadH264 = 96            // H264 payload
+const PayloadH265 = 98            // H265 payload
+const PayloadTS = 33              // TS stream
+const PayloadPS = 32              // PS stream
+const PayloadPCMA = 8             // PCMA payload
+const PayloadPCMU = 0             // PCMU payload
+const PayloadG722 = 9             // G722 payload
+const PayloadG723 = 4             // G723 payload
+const PayloadG728 = 15            // G729 payload
+const PayloadG729 = 18            // G729 payload
+const DefaultPlType = PayloadH264 // payload type
+const DefaultVideoRate = 90       // default video rate,KHZ
+const DefaultAudioRate = 8        // default audio rate,KHZ
+const (
+	HeaderLength    = 4
+	VersionShift    = 6
+	VersionMask     = 0x3
+	PaddingShift    = 5
+	PaddingMask     = 0x1
+	ExtensionShift  = 4
+	ExtensionMask   = 0x1
+	CcMask          = 0xF
+	MarkerShift     = 7
+	MarkerMask      = 0x1
+	PtMask          = 0x7F
+	SeqNumOffset    = 2
+	SeqNumLength    = 2
+	TimestampOffset = 4
+	TimestampLength = 4
+	SSRCOffset      = 8
+	SSRCLength      = 4
+	CSRCOffset      = 12
+	CSRCLength      = 4
+)
