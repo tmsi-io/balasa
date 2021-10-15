@@ -1,6 +1,6 @@
 package rtp
 
-//本文采用 rfc3550-RTP 标准，实现其中RTP包的解析、封装
+//used  rfc3550-RTP
 
 //The RTP header has the following format:
 //              0               1               2               3
@@ -39,12 +39,12 @@ type RTPPacket struct {
 	ExtensionPayload []byte
 
 	NaluType      int             //
-	IsFuA         bool            // 是否是FUA
-	FuAHeaderH264 nalu.FuInfoH264 // Fu头
-	FuAHeaderH265 nalu.FuInfoH265 // Fu头
-	NaluHeader    []byte          // 存放Nalu头部
+	IsFuA         bool            //
+	FuAHeaderH264 nalu.FuInfoH264 //
+	FuAHeaderH265 nalu.FuInfoH265 //
+	NaluHeader    []byte          //
 	NaluLen       int             //
-	NaluRaw       []byte          // 存放 裸流
+	NaluRaw       []byte          //
 }
 
 func CreatRTPPacket() *RTPPacket {
