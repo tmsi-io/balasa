@@ -1,10 +1,6 @@
 package ts
 
 const (
-	PmtProgramNumber = 0x01
-)
-
-const (
 	PATPid   = 0x00
 	PMTPid   = 0x66
 	VideoPid = 0x68
