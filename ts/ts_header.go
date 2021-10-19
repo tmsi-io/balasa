@@ -6,7 +6,7 @@ func (t *Es2Ts) WriteTsHead(pid int, dataLen int) {
 	t.TsPacket[t.CurrLen+2] = (byte)(pid & 0xff)
 	controls := 0x10
 	t.TsPacket[t.CurrLen+3] = (byte)(controls | t.nextContinuityCount())
-	pointer := PACKET_SIZE - 5 - dataLen
+	pointer := PacketSize - 5 - dataLen
 	t.TsPacket[t.CurrLen+4] = byte(pointer)
 	t.CurrLen += 5
 	for i := 0; i < pointer; i++ {

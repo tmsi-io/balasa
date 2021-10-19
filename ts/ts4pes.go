@@ -28,10 +28,10 @@ func (t *Es2Ts) WriteEsStream(w io.Writer, pesHead []byte, start bool, es []byte
 		t.TsPacket[t.CurrLen+11] = byte(PCRExtn >> 1)
 		t.CurrLen += 12
 		gotAdaptationField = true
-	} else if dataLen+pesHeadLen < MAX_PAYLOAD_SIZE {
+	} else if dataLen+pesHeadLen < MaxPayloadSize {
 		controls := 0x30
 		t.TsPacket[t.CurrLen+3] = (byte)(controls | t.nextContinuityCount())
-		if dataLen+pesHeadLen == MAX_PAYLOAD_SIZE-1 {
+		if dataLen+pesHeadLen == MaxPayloadSize-1 {
 			t.TsPacket[t.CurrLen+4] = 0
 			t.CurrLen += 5
 		} else {
@@ -46,8 +46,8 @@ func (t *Es2Ts) WriteEsStream(w io.Writer, pesHead []byte, start bool, es []byte
 		t.CurrLen += 4
 	}
 	if gotAdaptationField {
-		if dataLen+pesHeadLen < PACKET_SIZE-t.CurrLen {
-			padLen := PACKET_SIZE - t.CurrLen - dataLen - pesHeadLen
+		if dataLen+pesHeadLen < PacketSize-t.CurrLen {
+			padLen := PacketSize - t.CurrLen - dataLen - pesHeadLen
 			for i := 0; i < padLen; i++ {
 				t.TsPacket[t.CurrLen] = 0xff
 				t.CurrLen++
@@ -59,7 +59,7 @@ func (t *Es2Ts) WriteEsStream(w io.Writer, pesHead []byte, start bool, es []byte
 		n := copy(t.TsPacket[t.CurrLen:], pesHead)
 		t.CurrLen += n
 	}
-	if PACKET_SIZE-t.CurrLen == dataLen {
+	if PacketSize-t.CurrLen == dataLen {
 		copy(t.TsPacket[t.CurrLen:], es)
 		_, _ = w.Write(t.TsPacket)
 	} else {
