@@ -4,7 +4,7 @@ func (t *Es2Ts) WriteTsPAT(transportStreamId int, list PATPrograms) {
 	t.ReTsPacket()
 	dataLen := 12 + len(list)*4
 	sectionLength := 9 + len(list)*4
-	pointer := PACKET_SIZE - 5 - dataLen
+	pointer := PacketSize - 5 - dataLen
 	offset := 0
 	t.WriteTsHead(PATPid, dataLen)
 	t.TsPacket[t.CurrLen] = 0x00
@@ -25,7 +25,7 @@ func (t *Es2Ts) WriteTsPAT(transportStreamId int, list PATPrograms) {
 		t.CurrLen += 4
 		offset += 4
 	}
-	crc32 := crc32_block(0xffffffff, t.TsPacket[5+pointer:], offset)
+	crc32 := crc32Block(0xffffffff, t.TsPacket[5+pointer:], offset)
 	t.TsPacket[t.CurrLen] = byte((crc32 & 0xff000000) >> 24)
 	t.TsPacket[t.CurrLen+1] = byte((crc32 & 0x00ff0000) >> 16)
 	t.TsPacket[t.CurrLen+2] = byte((crc32 & 0x0000ff00) >> 8)

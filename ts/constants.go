@@ -16,9 +16,9 @@ const (
 )
 
 const (
-	PACKET_SIZE           = 188
-	MAX_PAYLOAD_SIZE      = 184
-	PES_MAXPAYLOAD        = 0xffff
-	CRC32_POLY            = 0x04c11db7
-	MAX_PTS_VALUE    uint = 0x1FFFFFFFF
+	PacketSize          = 188
+	MaxPayloadSize      = 184
+	PesMaxPayload       = 0xffff
+	Crc32Poly           = 0x04c11db7
+	MaxPtsValue    uint = 0x1FFFFFFFF
 )

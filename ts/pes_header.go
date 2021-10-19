@@ -23,7 +23,7 @@ func EncoderPesHead(streamId int, dataLen int, pts uint, withPTS bool) []byte {
 		header[8] = 0x05
 		encodePTS(header[9:14], pts)
 	}
-	if payloadLen > PES_MAXPAYLOAD {
+	if payloadLen > PesMaxPayload {
 		header[4] = 0
 		header[5] = 0
 	} else {

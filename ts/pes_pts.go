@@ -12,10 +12,10 @@ package ts
 */
 
 func encodePTS(data []byte, pts uint) {
-	if pts > MAX_PTS_VALUE {
+	if pts > MaxPtsValue {
 		var temp uint = pts
-		for temp > MAX_PTS_VALUE {
-			temp -= MAX_PTS_VALUE
+		for temp > MaxPtsValue {
+			temp -= MaxPtsValue
 		}
 		pts = temp
 	}

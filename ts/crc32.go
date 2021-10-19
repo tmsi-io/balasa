@@ -2,7 +2,7 @@ package ts
 
 var tableMade = false
 
-func crc32_block(crc uint32, data []byte, blkLen int) uint32 {
+func crc32Block(crc uint32, data []byte, blkLen int) uint32 {
 
 	var i, j int
 
@@ -27,7 +27,7 @@ func makeCrcTable() {
 		crc = uint32(i) << 24
 		for j = 0; j < 8; j++ {
 			if (crc & 0x80000000) != 0 {
-				crc = (crc << 1) ^ CRC32_POLY
+				crc = (crc << 1) ^ Crc32Poly
 			} else {
 				crc = crc << 1
 			}
