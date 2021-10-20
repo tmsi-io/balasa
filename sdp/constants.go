@@ -1,6 +1,6 @@
 package sdp
 
-const SDPVersion = "0"
+const Version = "0"
 const MediaTypeAudioStr = "audio"
 const MediaTypeVideoStr = "video"
 const AttrRTPMapH264 = "rtpmap:96 H264/" //
@@ -19,8 +19,8 @@ const ProtocolRTPAVP = "RTP/AVP"
 const TrackControl = "control:trackID="
 
 const (
-	StreamType_ES = 0
-	StreamType_TS = 1
+	StreamtypeEs = 0
+	StreamtypeTs = 1
 )
 
 var EnableAudio bool

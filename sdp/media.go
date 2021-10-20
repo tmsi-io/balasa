@@ -19,7 +19,7 @@ func (desc MediaDescription) Println() string {
 
 type Media struct {
 	Title     string
-	ConnInfo  []*SDPConnection
+	ConnInfo  []*Connection
 	Bandwidth map[string]int
 	Desc      MediaDescription
 	Encrypt   string

@@ -1,6 +1,6 @@
 package sdp
 
-type SDPConnection struct {
+type Connection struct {
 	Network    string
 	Type       string
 	Address    string
