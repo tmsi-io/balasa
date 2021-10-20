@@ -5,7 +5,7 @@ import (
 	"time"
 )
 
-type SDPTime struct {
+type Time struct {
 	StartTime int
 	EndTime   int
 	Repeat    int
@@ -13,7 +13,7 @@ type SDPTime struct {
 	Offsets   []time.Duration
 }
 
-func (t *SDPTime) Println() string {
+func (t *Time) Println() string {
 	var s string
 	s += fmt.Sprintf("t=%d %d\r\n", t.StartTime, t.EndTime)
 	s += fmt.Sprintf("r=7d 1h 0 25h\r\n")

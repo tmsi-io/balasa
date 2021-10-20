@@ -5,9 +5,9 @@ import (
 	"fmt"
 )
 
-type SDPPayload struct {
+type Payload struct {
 	Version     string
-	Origin      *SDPOrigin
+	Origin      *Origin
 	SessionName string
 	Info        string
 	URI         string
@@ -16,18 +16,18 @@ type SDPPayload struct {
 	Connection  string //IN IP4 224.2.17.12/127
 	Medias      []*Media
 	Attrs       []string
-	Times       []SDPTime
+	Times       []Time
 }
 
-func (sdp *SDPPayload) AddAttribute(attr string) {
+func (sdp *Payload) AddAttribute(attr string) {
 	sdp.Attrs = append(sdp.Attrs, attr)
 }
 
-func (sdp *SDPPayload) AddMedia(media *Media) {
+func (sdp *Payload) AddMedia(media *Media) {
 	sdp.Medias = append(sdp.Medias, media)
 }
 
-func (sdp *SDPPayload) Encode() []byte {
+func (sdp *Payload) Encode() []byte {
 	buff := &bytes.Buffer{}
 	_, _ = fmt.Fprintf(buff, "v=%s\r\n", sdp.Version)
 	_, _ = fmt.Fprintf(buff, "%s\r\n", sdp.Origin.Println())
