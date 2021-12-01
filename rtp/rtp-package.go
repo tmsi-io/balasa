@@ -92,11 +92,6 @@ func EncodeRTPHeader(Padding, Extension, CSRCCount, Mark, PayloadType, ssrc int,
 	binary.BigEndian.PutUint16(pData[2:4], SequenceNumber)
 	binary.BigEndian.PutUint32(pData[4:8], Timestamp)
 	binary.BigEndian.PutUint32(pData[8:12], uint32(ssrc))
-	//if CSRCCount > 0 {
-	//	for i := 0; i < CSRCCount; i++ {
-	//		binary.BigEndian.PutUint32(pData[(12+4*i):(12+i*4+4)], uint32(pThis.CSRCList[i]))
-	//	}
-	//}
 	return pData
 }
 
