@@ -21,9 +21,6 @@ import (
 //|V=2|P|X|CC =4|M| PT =7       |
 
 func (upload *Uploader) DealReceivedGBStream() {
-	/*
-		接收国标推流连接，拆分RTP包
-	*/
 	_buff := buff.BufferPool.Get().(*bytes.Buffer)
 	defer func() {
 		_buff.Reset()
@@ -33,11 +30,11 @@ func (upload *Uploader) DealReceivedGBStream() {
 	var count int
 	for !upload.Stoped {
 		upload.pool.ReInit()
-		if upload.BadCount >= 20 { // 设备存在问题时，会有发空包的情况, 防止空跑
+		if upload.BadCount >= 20 {
 			break
 		}
 		rtpHeaderLen := upload.pool.Get(2)
-		if _, err := io.ReadFull(upload.connRW, rtpHeaderLen); err == nil { // 读取RTP包头长度信息
+		if _, err := io.ReadFull(upload.connRW, rtpHeaderLen); err == nil {
 			rtpLen := int(binary.BigEndian.Uint16(rtpHeaderLen))
 			if rtpLen >= 65535 {
 				atomic.AddUint32(&upload.BadCount, 1)
@@ -52,7 +49,7 @@ func (upload *Uploader) DealReceivedGBStream() {
 						fmt.Println(strSSRC)
 					}
 					if upload.FirstFrame {
-						upload.FrameTimeStamp = Timestamp // 设置初始值
+						upload.FrameTimeStamp = Timestamp
 						upload.JumpSeq = Seq
 						upload.FirstFrame = false
 					}
@@ -76,9 +73,8 @@ func (upload *Uploader) DealReceivedGBStream() {
 							if tCost > upload.MaxFrameInterval {
 								upload.MaxFrameInterval = tCost
 							}
-							upload.PushDataWithChannel(_buff, upload.FrameTimeStamp)
+							// TODO do something for frame
 						}
-						//重置缓冲区
 						count = 0
 						_buff.Reset()
 						_buff.Write(PRTPData)
